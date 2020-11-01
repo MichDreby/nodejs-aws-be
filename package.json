@@ -4,8 +4,10 @@
   "description": "The best package you will ever find.",
   "author": "michdreby inc.",
   "license": "MIT",
-  
   "dependencies": {
     "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "serverless-aws-documentation": "^1.1.0"
   }
 }
