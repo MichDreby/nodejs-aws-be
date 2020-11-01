@@ -35,7 +35,6 @@ const serverlessConfiguration: Serverless = {
           http: {
             method: 'get',
             path: 'flats',
-            cors: true
           }
         }
       ]
@@ -47,7 +46,6 @@ const serverlessConfiguration: Serverless = {
           http: {
             method: 'get',
             path: 'flats/{flatId}',
-            cors: true
           }
         }
       ]

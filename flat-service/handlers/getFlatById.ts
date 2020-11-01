@@ -41,7 +41,7 @@ export const getFlatById: APIGatewayProxyHandler = async (event, _context) => {
       pathParameters
     );
   
-    const flat = find(flats, { id: Number(pathParameters?.flatId) });
+    const flat = find(flats, { id: pathParameters?.flatId });
   
     if (!flat) {
       throw new Error('Flat is not found')
