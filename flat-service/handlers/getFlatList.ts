@@ -29,14 +29,29 @@ const mockedResponse = [
 ];
 
 export const getFlatList: APIGatewayProxyHandler = async (event, _context) => {
-  console.log(
-    '**********\n',
-    'event',
-    event
-  );
+  try {
+    console.log(
+      '**********\n',
+      'event',
+      event
+    );
+    
+    return {
+      statusCode: 200,
+      body: JSON.stringify(mockedResponse),
+    };
+  } catch(error) {
+    console.log(
+      '**********\n',
+      'error',
+      error
+    );
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(mockedResponse),
-  };
+    return {
+      statusCode: 405,
+      body: JSON.stringify({
+        message: 'Something went wrong, please try again later'
+      })
+    }
+  }  
 }

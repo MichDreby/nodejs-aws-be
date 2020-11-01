@@ -32,34 +32,32 @@ const flats = [
 
 
 export const getFlatById: APIGatewayProxyHandler = async (event, _context) => {
-  const { pathParameters } = event;
+  try {
+    const { pathParameters } = event;
 
-  console.log(
-    '**********\n',
-    'pathParameters',
-    pathParameters
-  );
+    console.log(
+      '**********\n',
+      'pathParameters',
+      pathParameters
+    );
+  
+    const flat = find(flats, { id: Number(pathParameters?.flatId) });
+  
+    if (!flat) {
+      throw new Error('Flat is not found')
+    }
+  
+    return {
+      statusCode: 200,
+      body: JSON.stringify(flat),
+    };
 
-  const flat = find(flats, { id: Number(pathParameters?.flatId) });
-
-  console.log(
-    '**********\n',
-    'flat',
-    flat
-  );
-
-  if (!flat) {
+  } catch(error) {
     return {
       statusCode: 404,
       body: JSON.stringify({
-        message: 'Flat is not found'
+        message: error.message
       })
     };
   }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify(flat),
-  };
-
 }
