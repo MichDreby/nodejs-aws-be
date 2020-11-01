@@ -1,0 +1,11 @@
+{
+  "name": "nodejs-aws-be",
+  "version": "1.0.0",
+  "description": "The best package you will ever find.",
+  "author": "michdreby inc.",
+  "license": "MIT",
+  
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
