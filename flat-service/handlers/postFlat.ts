@@ -59,6 +59,15 @@ export const postFlat: APIGatewayProxyHandler = async (event, _context) => {
       values('${address}', ${area}, '${city}', '${district}', ${price}, ${rooms})
     `);
     
+    await client.query(`
+      INSERT INTO stocks (flat_id, count)
+      SELECT id, round(random() * 10)
+      FROM flats
+      LEFT outer JOIN stocks
+      ON flats.id = stocks.flat_id
+      WHERE flat_id IS NULL
+    `);
+    
     return {
       statusCode: 200,
       body: JSON.stringify('Flat is successfully added'),
