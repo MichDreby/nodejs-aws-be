@@ -85,3 +85,11 @@ functions:
       - http:
           path: flats/{flatId}
           method: get
+
+
+  postFlat:
+    handler: ./handlers/postFlat.postFlat
+    events:
+      - http:
+          path: flats/post
+          method: post

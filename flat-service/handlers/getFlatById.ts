@@ -48,7 +48,7 @@ export const getFlatById: APIGatewayProxyHandler = async (event, _context) => {
     const { rows: flats } = await client.query(`
       SELECT id, address, area, district, price, rooms, count
       FROM flats
-      inner join stocks
+      INNER JOIN stocks
       ON flats.id = stocks.flat_id    
     `);
   
