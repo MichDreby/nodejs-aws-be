@@ -36,6 +36,14 @@ export const postFlat: APIGatewayProxyHandler = async (event, _context) => {
       event
     );
 
+    const body = JSON.parse(event.body);
+
+    console.log(
+      '**********\n',
+      'body',
+      body
+    );
+
     const {
       address,
       area,
@@ -43,19 +51,9 @@ export const postFlat: APIGatewayProxyHandler = async (event, _context) => {
       district,
       price,
       rooms,
-    } = JSON.parse(event.body);
+    } = body;
 
-    console.log(
-      '**********\n',
-      'body props',
-      address,
-      area,
-      city,
-      district,
-      price,
-      rooms,
-    );
-  
+    
     await client.query(`
       INSERT INTO flats(address, area, city, district, price, rooms)
       values('${address}', ${area}, '${city}', '${district}', ${price}, ${rooms})
