@@ -10,8 +10,12 @@ provider:
   runtime: nodejs12.x
   apiGateway:
     minimumCompressionSize: 1024
-  # environment:
-  #   AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+  environment:
+    PG_HOST: dvyshka-db.cwjlobdvfzsg.eu-west-1.rds.amazonaws.com
+    PG_PORT: 5432
+    PG_DATABASE: dvyshka
+    PG_USERNAME: postgres
+    PG_PASSWORD: Gr3YRckw0eRjhphud3DN
   region: eu-west-1
 
 custom:
