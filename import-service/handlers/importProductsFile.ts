@@ -24,11 +24,13 @@ export const importProductsFile: APIGatewayProxyHandler = async (event, _context
     const requestedFile = find(
       files,
       ({Key: key}) => {
+        /** TODO: test this regexp */
         const regExp = new RegExp(`${FOLDER_NAME}\/${fileName}\..*$`, 'igm');
         return regExp.test(key);
       }
     );
 
+    /** TODO: read about best practices for error handling in lambda functions */
     if (!requestedFile) {
       return {
         statusCode: 404,
