@@ -1,0 +1,43 @@
+service: import-service
+
+# Remember to reference the plugin
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  apiGateway:
+    minimumCompressionSize: 1024
+  region: eu-west-1
+  
+  iamRoleStatements:
+  - Effect: 'Allow'
+    Action:
+      - 's3:ListBucket'
+    Resource:
+        - 'arn:aws:s3:::rs-task-5-bucket'
+  - Effect: 'Allow'
+    Action:
+      - 's3:*'
+    Resource:
+        - 'arn:aws:s3:::rs-task-5-bucket/*'
+
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+functions:
+
+  importProductsFile:
+    handler: ./handlers/importProductsFile.importProductsFile
+    events:
+      - http:
+          path: import
+          method: get
+          request:
+            parameters:
+              querystrings:
+                name: true
